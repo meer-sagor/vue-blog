@@ -1,0 +1,13 @@
+<template>
+  <h1>Post list</h1>
+  <PostItem />
+</template>
+
+<script>
+import PostItem from "../components/PostItem.vue";
+export default {
+  components: {
+    PostItem,
+  },
+};
+</script>
