@@ -1,36 +1,33 @@
 <template>
-  <form class="form" @submit.prevent="handleSubmit(inputValues)">
+  <form class="form" @submit.prevent="handleSubmit({ title, des })">
     <div class="form-group margin-bottom">
       <label for="title">Title</label>
-      <input type="text" name="" id="title" v-model="inputValues.title" />
+      <input type="text" name="" id="title" v-model="title" />
     </div>
 
     <div class="form-group">
       <label for="description">description</label>
-      <textarea id="description" rows="10" v-model="inputValues.description" />
+      <textarea id="description" rows="10" v-model="des" />
     </div>
     <div class="actions">
-      <button type="submit">Add post</button>
+      <button type="submit">add post</button>
     </div>
   </form>
 </template>
 
 <script>
 import { v4 as uuidv4 } from "uuid";
+
+import { mapFields } from "vuex-map-fields";
 export default {
-  data() {
-    return {
-      inputValues: {
-        id: uuidv4(),
-        title: "",
-        description: "",
-      },
-      isDisable: true,
-    };
+  computed: {
+    ...mapFields(["postObj.title", "postObj.des", "postObj.willUpdate"]),
   },
+
   methods: {
     handleSubmit(values) {
-      this.$store.commit("addPost", values);
+      const id = uuidv4();
+      this.$store.commit("addPost", { id, ...values });
       this.$router.replace({ path: "/" });
     },
   },

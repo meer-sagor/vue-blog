@@ -1,7 +1,9 @@
 <template>
   <nav class="nav">
     <div class="brand">
-      <h1>Brand Name</h1>
+      <router-link :to="{ name: 'Home' }">
+        <h1>Brand Name</h1>
+      </router-link>
     </div>
     <div class="nav-links">
       <router-link :to="{ name: 'Home' }">Home</router-link>
@@ -20,6 +22,12 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.brand {
+  cursor: pointer;
+}
+.brand h1 {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .nav-links a {
   padding: 1rem;
